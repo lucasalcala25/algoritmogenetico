@@ -1,0 +1,383 @@
+/*  Copyright © 2013 Sajith Dilshan <sajithdilshan@gmail.com>
+    This work is free. You can redistribute it and/or modify it under the
+    terms of the Do What The Fuck You Want To Public License, Version 2,
+    as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
+*/
+
+/* Basic CSS starts */
+
+body {
+    -webkit-font-smoothing: antialiased;
+    min-width: 1100px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+}
+
+a:hover {
+
+}
+
+a:hover, a:active, a:focus {
+    outline: 0;
+}
+
+hr {
+
+}
+
+:focus {
+    outline: none;
+}
+
+::-moz-focus-inner {
+    border: 0;
+}
+
+/* Basic CSS ends */
+
+.container {
+    width: 1100px;
+}
+
+.tblue {
+    color: #69b8e5;
+}
+
+.top {
+    background: #555 url('../img/back.jpg') repeat;
+    border-bottom: 1px solid #000;
+}
+
+.inner-page {
+    padding-top: 0 !important;
+    padding-bottom: 10px;
+}
+
+/* Header */
+
+header {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 80px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #000;
+    width: 100%;
+    position: fixed;
+}
+
+header .logo h1 {
+    font-size: 40px;
+    line-height: 45px;
+    color: #fff;
+    font-family: 'Lobster Two', cursive;
+    text-shadow: 1px 1px 1px #777;
+}
+
+header .logo h1 a {
+    color: #fff;
+    text-decoration: none;
+    padding-left: 10px;
+}
+
+header .navigation a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 80px;
+    margin-right: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px 15px;
+    border-radius: 5px;
+    -webkit-transition: background 1s ease;
+    -moz-transition: background 1s ease;
+    -o-transition: background 1s ease;
+    -ms-transition: background 1s ease;
+    transition: background 1s ease;
+}
+
+header .navigation a:hover {
+    color: #fff;
+    background: #333;
+    -webkit-transition: background 1s ease;
+    -moz-transition: background 1s ease;
+    -o-transition: background 1s ease;
+    -ms-transition: background 1s ease;
+    transition: background 1s ease;
+}
+
+/* Features */
+
+.features {
+    background: #eee url('../img/featureback1.png') repeat;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid #ddd;
+}
+
+.feature-title {
+    padding-top: 30px;
+}
+
+.features .feature-title h3,
+.features .feature-title h5 {
+    font-family: 'Lobster Two', cursive;
+    font-weight: 400 !important;
+    color: #555;
+    text-align: center;
+}
+
+.features .feature-title h3 {
+    font-size: 45px;
+}
+
+.features .feature-title h5 {
+    font-size: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 15px;
+}
+
+.features .feature-title p {
+    font-size: 15px;
+    line-height: 30px;
+    font-weight: normal;
+    color: #555;
+    font-family: 'Droid Serif', serif;
+    font-style: italic;
+    margin: 0 auto 20px;
+    text-align: justify;
+
+}
+
+/* Shots */
+
+.shots {
+    padding-bottom: 60px;
+    margin: 0 auto 20px;
+}
+
+.sample-img {
+    /*vertical-align:middle;*/
+    /*padding: 0 auto;*/
+    display: inline-block;
+    margin-left: 25%;
+}
+
+.shots .shotcontent {
+    padding-top: 60px;
+}
+
+.shots .shotcontent h3 {
+    font-family: 'Lobster Two', cursive;
+    font-size: 35px;
+    font-weight: 400 !important;
+    color: #555;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.shots .shotcontent p.shot-para, .shots .shotcontent ul, .shots .shotcontent li  {
+    font-size: 16px;
+    font-style: italic;
+    font-family: 'Droid Serif', serif;
+    font-weight: normal;
+    line-height: 35px;
+    text-align: justify;
+    padding-bottom: 10px;
+}
+
+.shots hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Footer */
+
+footer {
+    padding-top: 30px;
+    background: #000 url('../img/3.png') repeat;
+    color: #ccc;
+}
+
+footer p {
+    font-size: 16px;
+    font-style: italic;
+    font-family: 'Droid Serif', serif;
+    font-weight: normal;
+    line-height: 35px;
+}
+
+footer a {
+    color: #aaa;
+}
+
+footer a:hover {
+    text-decoration: none;
+    color: #eee;
+}
+
+footer h3 {
+    font-family: 'Lobster Two', cursive;
+    font-size: 35px;
+    font-weight: 400 !important;
+    color: #fff;
+    text-align: center;
+}
+
+#aboutus {
+    max-width: 940px;
+    margin: 0 auto;
+}
+
+#sajith,
+#vimuth,
+#tharindu,
+#mihil {
+    -webkit-border-radius: 999px;
+    -moz-border-radius: 999px;
+    border-radius: 999px;
+    width: 150px;
+    height: 150px;
+    float: left;
+    margin: 30px;
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+    filter: gray;
+    -webkit-filter: grayscale(100%);
+}
+
+#sajith:hover,
+#vimuth:hover,
+#tharindu:hover,
+#mihil:hover {
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+    -webkit-filter: grayscale(0%);
+    cursor: pointer;
+}
+
+#sajith {
+    background: url('../img/sajith.jpg');
+}
+
+#vimuth {
+    background: url('../img/vimuth.jpg');
+}
+
+#tharindu {
+    background: url('../img/tharindu.jpg');
+}
+
+#mihil {
+    background: url('../img/mihil.jpg');
+}
+
+/*AJAX loader*/
+
+.ajax-loader {
+    background: url('../img/loader.gif') center center no-repeat white;
+    -webkit-border-radius: 999px;
+    -moz-border-radius: 999px;
+    border-radius: 999px;
+    display: none;
+    width: 62px;
+    height: 62px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    padding: 10px;
+    margin-left: -50px;
+    margin-top: -50px;
+    z-index: 2;
+    overflow: auto;
+}
+
+/*Parameter form*/
+
+#input-form {
+    max-width: 300px;
+    float: left;
+    margin-left: 30px;
+    font-size: 12px;
+    font-style: italic;
+    font-family: 'Droid Serif', serif;
+    text-align: left;
+}
+
+/* chess board */
+
+.black,
+.white,
+.black-queen,
+.white-queen {
+    width: 50px;
+    height: 50px;
+    float: left;
+}
+
+.black-queen {
+    background: url('../img/black-queen.svg') no-repeat center, url('../img/white.png') repeat;
+}
+
+.white-queen {
+    background: url('../img/white-queen.svg') no-repeat center, url('../img/black.png') repeat;
+}
+
+.black {
+    background: #000000 url('../img/black.png') repeat;
+}
+
+.white {;
+    background: #ffffff url('../img/white.png') repeat;
+}
+
+.row-block {
+    clear: left;
+}
+
+#chess-board-container {
+    text-align: center;
+    padding: 120px 0 50px;
+    display: none;
+}
+
+#p-chess {
+    float: left;
+    padding: 30px 30px;
+}
+
+#nojs-div {
+    height: 250px;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+}
+
+#nojs-div p {
+    padding-top: 150px;
+    padding-bottom: 50px;
+    font-size: 16px;
+    font-style: italic;
+    font-family: 'Droid Serif', serif;
+    font-weight: normal;
+    line-height: 35px;
+    text-align: center;
+}
+
+#chess-board {
+    background-color: rgba(0, 0, 0, 0.4);
+    display: inline-block;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}

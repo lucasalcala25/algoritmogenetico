@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Genetic Algorithms</title>
+    <meta name="description" content="Genetic Algorithms. Computer programs that evolve in ways that resemble natural selection, can solve complex problems
+                    even their creators do not fully understand.">
+    <meta name="keywords" content="genetic algorithms, eight queen problem, n queen problem">
+    <meta name="author" content="Sajith, Vimuth, Tharindu, Mihil">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic' rel='stylesheet' type='text/css'>
+
+
+    <!-- Styles -->
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel"><img src='../img/hal.png'> I'm sorry Dave, I can't let you do
+                    that...</h4>
+            </div>
+            <div class="modal-body" id="model-body-content"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="ajax-loader"></div>
+
+<!-- Top Starts -->
+<div class="top">
+
+    <!-- Header Starts -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="logo">
+                        <h1><a href="#">Genetic Algorithms<span class="tblue">.</span></a></h1>
+                    </div>
+                </div>
+                <div class="navigation pull-right">
+                    <a href="#introduction">Introduction</a>
+                    <a href="#problem">Problem</a>
+                    <a href="#solution">Solution</a>
+                    <a href="#aboutus">About Us</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Ends -->
+
+    <!-- Chess Board starts -->
+    <div class="hero">
+        <div class="container">
+            <div class="row">
+                <noscript>
+                    <div id="nojs-div"><p>JavaScript is disabled! You need to enable JavaScript on your browser in-order
+                        to use n-queen problem solver</p></div>
+                </noscript>
+                <div id="chess-board-container">
+                    <div id="chess-board">
+                        <div id="p-chess"></div>
+                    </div>
+                    <div id="input-form">
+                        <form class="form" role="form">
+                            <div class="form-group">
+                                <label>Number of Queens</label>
+                                <input type="number" min="8" max="20" step="1" class="form-control" id="numOfQueens"
+                                       placeholder="8" value="8">
+                            </div>
+                            <div class="form-group">
+                                <label>Mutation Probability</label>
+                                <input type="number" min="0" max="1" step=".001" class="form-control" id="mutationProb"
+                                       placeholder="0.001" value="0.001">
+                            </div>
+                            <div class="form-group">
+                                <label>Max. Iterations</label>
+                                <input type="number" min="0" class="form-control" id="maxIteration"
+                                       placeholder="1000000" value="1000000">
+                            </div>
+                            <div class="form-group">
+                                <label>Initial Population Size</label>
+                                <input type="number" min="1" class="form-control" id="popSize"
+                                       placeholder="10" value="10">
+                            </div>
+                            <div id="btn-apply" class="btn btn-default">Solve</div>
+                            <a class="btn btn-default" href="/download" target="_blank">Download</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Chess Board  ends -->
+</div>
+<!-- Top Ends -->
+
+<!-- Introduction Starts -->
+<div id="introduction" class="features">
+    <div class="container">
+        <div class="row">
+            <div class="feature-title">
+                <h3>What are Genetic Algorithms?</h3>
+                <h5>" Computer programs that evolve in ways that resemble natural selection, can solve complex problems
+                    even their creators do not fully understand. "</h5>
+
+                <p>Genetic Algorithms (GAs) are adaptive methods which may be used to solve search and optimization
+                    problems. They are based on the genetic processes of biological organisms. Over many generations,
+                    natural populations evolve according to the principles of natural selection and "survival of the
+                    fittest", first clearly stated by Charles Darwin in The Origin of Species . By mimicking this
+                    process, genetic algorithms are able to "evolve" solutions to real world problems, if they have
+                    been suitably encoded. For example, GAs can be used to design bridge structures, for maximum
+                    strength/weight ratio, or to determine the least wasteful layout for cutting shapes from cloth.
+                    They can also be used for on-line process control, such as in a chemical plant, or load
+                    balancing on a multi-processor computer system.</p>
+
+                <p>The basic principles of GAs were first laid down rigorously by <a
+                        href="https://mitpress.mit.edu/books/adaptation-natural-and-artificial-systems" target="_blank">Adaptation
+                    in Natural and Artificial Systems</a>, and are well described in many texts (e.g. <a
+                        href="http://www.amazon.com/Genetic-Algorithms-Simulated-Annealing-Lawrence/dp/0273087711/"
+                        target="_blank">Genetic Algorithms and Simulated Annealing, </a><a
+                        href="http://www.amazon.com/Handbook-Genetic-Algorithms-Lawrence-David/dp/0442001738/"
+                        target="_blank">Handbook of Genetic Algorithms, </a><a
+                        href="http://dx.doi.org/10.1109/79.543973" target="_blank">Genetic algorithms and their
+                    applications, </a>etc.) GAs simulate those processes in natural populations which are essential to
+                    evolution. Exactly which biological processes are essential for evolution, and which processes have
+                    little or no role to play is still a matter for research; but the foundations are clear. In nature,
+                    individuals in a population compete with each other for resources such as food, water and shelter.
+                    Also, members of the same species often compete to attract a mate. Those individuals which are most
+                    successful in surviving and attracting mates will have relatively larger numbers of offspring.
+                    Poorly performing individuals will produce few of even no offspring at all. This means that the
+                    genes from the highly adapted, or "fit" individuals will spread to an increasing number of
+                    individuals in each successive generation. The combination of good characteristics from different
+                    ancestors can sometimes produce "super fit" offspring, whose fitness is greater than that of either
+                    parent. In this way, species evolve to become more and more well suited to their environment.</p>
+
+                <p>solution to a given problem. Each individual is assigned a "fitness score" according to how good
+                    a solution to the problem it is. For example, the fitness score might be the strength/weight
+                    ratio for a given bridge design. (In nature this is equivalent to assessing how effective an
+                    organism is at competing for resources.) The highly fit individuals are given opportunities to
+                    "reproduce", by "cross breeding" with other individuals in the population. This produces new
+                    individuals as "off spring", which share some features taken from each "parent". The least fit
+                    members of the population are less likely to get selected for reproduction, and so "die
+                    out".</p>
+
+                <p>A whole new population of possible solutions is thus produced by selecting the best individuals
+                    from the current "generation", and mating them to produce a new set of individuals. This new
+                    generation contains a higher proportion of the characteristics possessed by the good members of
+                    the previous generation. In this way, over many generations, good characteristics are spread
+                    throughout the population, being mixed and exchanged with other good characteristics as they go.
+                    By favoring the mating of the more fit individuals, the most promising areas of the search space
+                    are explored. If the GA has been designed well, the population will converge to an optimal
+                    solution to the problem.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Introduction Ends -->
+
+<!-- Shots starts -->
+<div class="shots">
+<div class="container">
+<!-- problem-->
+<div id="problem" class="row">
+    <div class="shotcontent">
+        <h3>The infamous<span class="text-muted"> Eight Queens</span> problem</h3>
+
+        <p class="shot-para">The original eight queens problem consisted of trying to find a way to place eight
+            queens on a chessboard so that no queen would attack any other queen. An alternate way of expressing
+            the problem is to place eight “anythings” on an eight by eight grid such that none of them share a
+            common row, column, or diagonal.</p>
+
+        <p class="shot-para">It has long been known that there are 92 solutions to the problem. Of these 92,
+            there are 12 distinct patterns. All of the 92 solutions can be transformed into one of these 12
+            unique patterns using rotations and reflections.</p>
+
+        <p class="shot-para">The 12 basic solutions can be constructed using the following table. For example,
+            if you are constructing solution number 1, then the Queen for chessboard row 1 should be placed in
+            column 1, the Queen for row 2 should be placed in column 5, etc. A diagram showing solution number 1
+            appears below the table.</p>
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th rowspan="2">Solution #</th>
+                <th colspan="8">Elements show which column to use per chessboard row</th>
+            </tr>
+            <tr>
+                <th>Row 0</th>
+                <th>Row 1</th>
+                <th>Row 2</th>
+                <th>Row 3</th>
+                <th>Row 4</th>
+                <th>Row 5</th>
+                <th>Row 6</th>
+                <th>Row 7</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>0</td>
+                <td>4</td>
+                <td>7</td>
+                <td>5</td>
+                <td>2</td>
+                <td>6</td>
+                <td>1</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>0</td>
+                <td>5</td>
+                <td>7</td>
+                <td>2</td>
+                <td>6</td>
+                <td>3</td>
+                <td>1</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>1</td>
+                <td>3</td>
+                <td>5</td>
+                <td>7</td>
+                <td>2</td>
+                <td>0</td>
+                <td>6</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>1</td>
+                <td>4</td>
+                <td>6</td>
+                <td>0</td>
+                <td>2</td>
+                <td>7</td>
+                <td>5</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>1</td>
+                <td>4</td>
+                <td>6</td>
+                <td>3</td>
+                <td>0</td>
+                <td>7</td>
+                <td>5</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>1</td>
+                <td>5</td>
+                <td>0</td>
+                <td>6</td>
+                <td>3</td>
+                <td>7</td>
+                <td>2</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>1</td>
+                <td>5</td>
+                <td>7</td>
+                <td>2</td>
+                <td>0</td>
+                <td>3</td>
+                <td>6</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>1</td>
+                <td>6</td>
+                <td>2</td>
+                <td>5</td>
+                <td>7</td>
+                <td>4</td>
+                <td>0</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>1</td>
+                <td>6</td>
+                <td>4</td>
+                <td>7</td>
+                <td>0</td>
+                <td>3</td>
+                <td>5</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>2</td>
+                <td>4</td>
+                <td>1</td>
+                <td>7</td>
+                <td>0</td>
+                <td>6</td>
+                <td>3</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>2</td>
+                <td>4</td>
+                <td>7</td>
+                <td>3</td>
+                <td>0</td>
+                <td>6</td>
+                <td>1</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>2</td>
+                <td>5</td>
+                <td>1</td>
+                <td>4</td>
+                <td>7</td>
+                <td>0</td>
+                <td>6</td>
+                <td>3</td>
+            </tr>
+            </tbody>
+        </table>
+        <img src="img/sample.jpg" class="sample-img">
+
+        <p class="shot-para">If we rotate and reflect any solution so that the entry on row 1 is as far left as
+            possible, then we can group solutions by this leftmost column. The above example is a “Column 1”
+            solution. Of the 12 basic solutions, two are “Column 1” solutions, seven are “Column 2” solutions,
+            and three are “Column 3” solutions.</p>
+    </div>
+</div>
+<hr>
+<!-- problem ends -->
+
+<!-- solution -->
+<div id="solution" class="row">
+    <div class="shotcontent">
+        <h3>How we solved<span class="text-muted"> The Eight Queens</span> problem using<span class="text-muted"> Genetic Algorithms</span>
+        </h3>
+
+        <p class="shot-para">As described above genetic algorithms work by applying “Natural Selection” to a population
+            so that only the fittest in the population survive. In our implementation of the genetic algorithm members
+            of the population are represented by “chromosome”s. Each chromosome is a possible board possession in the n
+            queens game. </p>
+
+        <p class="shot-para">The board position is represented as a tuple of n numbers, where each number represents the
+            position of the queen on the nth column. So the following board position is represented as
+            (4,6,1,5,2,0,7,3). This representation ensures that in every chromosome there is no possibility for two
+            queens to be on the same column.</p>
+
+        <img src="img/how.jpg" class="sample-img">
+
+        <p class="shot-para">These chromosomes in the population breed among each other and mutate until only the
+            “fittest”, which in our case is the solution with least conflicts among the queens remain.</p>
+
+        <p class="shot-para">The program starts by creating a random population of chromosomes for a size specified by
+            us. Each random chromosome is created so that it has no two queens in the same row to avoid introducing
+            faulty chromosomes to the population. This is done using the following function.</p>
+            
+            <pre class="prettyprint">
+                        <code class="language-python">
+                            def random(cls, num_queens=8):
+                                chromosome = [i for i in range(num_queens)]
+                                random.shuffle(chromosome)
+                                return cls(chromosome)
+                        </code>
+            </pre>
+        
+
+        <p class="shot-para">As each row number only appears once in the chromosome no two queens are on the same
+            row.</p>
+
+        <p class="shot-para">At each iteration, the chromosomes breed among each other. We select two random chromosomes
+            from the population and combines the two of them by “breeding”. This breeding function act as follows</p>
+        <ul>
+            <li>If both parents have common “gene”s (board positions) they are also transferred to the child.</li>
+            <li>For the remaining position random numbers are generated taking care not to have a chromosome where there
+                is a conflict of more than one queen in the same row.
+            </li>
+        </ul>
+        
+                    <pre class="prettyprint">
+                        <code class="language-python">
+                            def fromParents(cls, parent_one, parent_two):
+                                if (len(parent_one) != len(parent_two)):
+                                    return "Error"
+        
+                                if (parent_one == parent_two):
+                                    parent_two = Chromosome.random(len(parent_two))
+        
+                                possible = [i for i in range(len(parent_one))]
+                                current = [-1 for i in range(len(parent_one))]
+        
+                                for i in range(len(parent_one)):
+                                    if(parent_one[i] == parent_two[i]):
+                                        current[i] = parent_one[i]
+                                        possible.remove(current[i])
+                                
+                                for i in range(len(parent_one)):
+                                    if(current[i] == -1):
+                                        current[i] = random.choice(possible)
+                                        possible.remove(current[i])
+                
+                                return cls(current)
+                        </code>
+                    </pre>
+        
+        <ul>
+            <li>
+                Then genetic mutation is introduced to the chromosome according to the predefined 	mutation probability. 
+                This condition is enforced by checking the mutation probability against a random number. 
+                If the random number falls below the probability number the gene is mutated by switching two random 
+                positions in the chromosome.
+            </li>
+            <li>Then a third random chromosome is selected and replaced using the newly created child chromosome.</li>
+        </ul>
+
+                    <pre class="prettyprint">
+                        <code class="language-python">
+                            def mutate(self, mutation_prob = .001):
+                                if (random.random() < mutation_prob ):
+                                    indexOne = random.randint(0,len(self)-1)
+                                    indexTwo = random.randint(0,len(self)-1)
+                                    temp = self.chromosome[indexOne]
+                                    self.chromosome[indexOne] = self.chromosome[indexTwo]
+                                    self.chromosome[indexTwo] = temp
+                        </code>
+                    </pre>
+
+        <p class="shot-para">At the end of each iteration the population is sorted according to how “fit” they are. The
+            fitness of the chromosome is calculated using the number of conflicts in the board. This is calculated using
+            the cost function. </p>
+
+                    <pre class="prettyprint">
+                        <code class="language-python">
+                            def getCost(self):
+                                cost = 0;
+                                for i in range(len(self.chromosome)):
+                                    cost+=self.chromosome.count(self.chromosome[i]) - 1
+                                    cost+=self.getDiagonalCost(i)
+                                return cost
+
+                            def getDiagonalCost(self,index):
+                                cost = 0
+                                for i in range(len(self.chromosome)):
+                                    if(i != index):
+                                        delta_x = abs(index - i)
+                                        delta_y = abs(self.chromosome[index] - self.chromosome[i])
+                                    if(delta_x == delta_y):
+                                        cost= cost+1
+                                return cost
+                        </code>
+                    </pre>
+
+
+        <p class="shot-para">The chromosome is considered fitted if the number of conflicts is the lowest. If the
+            fittest chromosome is a solution the algorithm ends. If not the circle of n-queen life continues until a
+            solution is found or the limit to iterations is reached.</p>
+        <p class="shot-para">Below video will give an overall idea of how we build the complete solution.</p>
+        <div class="sample-img">
+            <iframe width="420" height="315" src="//www.youtube.com/embed/j0c8ynCn2_Y" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+    </div>
+</div>
+<hr>
+<!-- solution ends -->
+</div>
+</div>
+</div>
+<!-- Shots Ends -->
+
+<!-- aboutus starts -->
+<footer>
+    <div id="aboutus" class="container">
+        <h3>About Us</h3>
+
+        <p>We are four undergraduates at the Department of Computer Science and Engineering, University of Moratuwa,
+            Sri Lanka. We designed this as a project for our semester 5 module Intelligent Systems and the source code
+            is available on <a href="https://github.com/sajithdilshan/genetic-algorithms-explained" target="_blank">Github</a>
+            under <a href="http://www.wtfpl.net/" target="_blank">wtfpl license.</a></p>
+
+        <div id="sajith" onclick="location.href='http://sajithdilshan.github.io/';"></div>
+        <div id="vimuth" onclick="location.href='http://lk.linkedin.com/pub/vimuth-fernando/32/820/6a1';"></div>
+        <div id="tharindu" onclick="location.href='http://lk.linkedin.com/in/tharinduranasinghe';"></div>
+        <div id="mihil" onclick="location.href='http://www.linkedin.com/pub/mihil-ranathunga/47/703/b3';"></div>
+    </div>
+</footer>
+<!-- aboutus Ends -->
+
+<!-- Javascript files -->
+<!-- jQuery -->
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>-->
+<script src="js/jquery.js"></script>
+<!-- Bootstrap JS -->
+<script src="js/bootstrap.js"></script>
+<!-- Respond JS for IE8 -->
+<script src="js/respond.min.js"></script>
+<!-- HTML5 Support for IE -->
+<script src="js/html5shiv.js"></script>
+<!-- Custom JS -->
+<script src="js/custom.js"></script>
+<!--prettyfy-->
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+</body>
+</html>
